@@ -1,0 +1,24 @@
+# Ruijie Voucher Scanner Bot
+
+Telegram bot for scanning Ruijie vouchers with MAX SPEED.
+
+## Features
+- 6/7/8 digit scan
+- Random infinite scan
+- MAX SPEED: 1000 threads
+- Auto captcha solver
+
+## Commands
+- /start - Welcome
+- /seturl <url> - Set session URL
+- /scan 6|7|8 - Start scan
+- /scan random - Random scan
+- /status - Check status
+- /stop - Stop scan
+- /result - View found codes
+
+## Deploy
+1. Fork this repo
+2. Add secrets: BOT_TOKEN, ADMIN_ID
+3. Enable Actions
+4. Bot runs automatically
