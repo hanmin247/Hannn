@@ -1,0 +1,6 @@
+pyTelegramBotAPI
+aiohttp
+ddddocr
+opencv-python
+numpy
+certifi
