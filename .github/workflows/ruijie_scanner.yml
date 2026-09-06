@@ -1,0 +1,37 @@
+name: Ruijie Voucher Scanner
+
+on:
+  workflow_dispatch: # GitHub website ကနေ လက်နဲ့ "Run workflow" နှိပ်ပြီး အလုပ်လုပ်စေရန်
+  # schedule:
+  #   - cron: '0 0 * * *' # လိုအပ်ရင် အချိန်အလိုက် အလိုအလျောက် run ဖို့ (ဥပမာ- နေ့တိုင်း ည ၁၂ နာရီ)
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install system dependencies (OpenCV)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-glx libglib2.0-0
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests aiohttp ddddocr opencv-python numpy
+
+      - name: Run Scanner Script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          # အကယ်၍ script ထဲက token တွေကို environment variable ကနေ ယူသုံးချင်ရင် ဒီနေရာမှာ ချိန်နိုင်ပါတယ်။
+          python scanner.py
