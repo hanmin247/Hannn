@@ -1,5 +1,0 @@
-requests
-aiohttp
-ddddocr
-opencv-python-headless
-numpy
